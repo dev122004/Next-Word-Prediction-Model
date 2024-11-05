@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Word Prediction</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Page styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #4a90e2;
+            font-size: 2em;
+            text-transform: uppercase;
+        }
+
+        /* Form styling */
+        form {
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        label {
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #4a90e2;
+        }
+
+        button {
+            background-color: #4a90e2;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #357abd;
+        }
+
+        /* Result styling */
+        .results {
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 500px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #4a90e2;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        strong {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Next Word Prediction</h1>
+    <form action="/predict" method="post">
+        <label for="text">Enter text:</label>
+        <input type="text" id="text" name="text" placeholder="Type a sentence" required>
+        
+        <label for="num_words">Number of words to predict:</label>
+        <input type="number" id="num_words" name="num_words" min="1" max="10" value="3">
+        
+        <button type="submit">Predict Next Words</button>
+    </form>
+    
+
+    {% if input_text %}
+        <div class="results">
+            <h2>Input Text:</h2>
+            <p>{{ input_text }}</p>
+        </div>
+    {% endif %}
+
+    {% if prediction %}
+        <div class="results">
+            <h2>Predicted Next Word:</h2>
+            <p><strong>{{ prediction }}</strong></p>
+        </div>
+    {% endif %}
+</body>
+</html>
